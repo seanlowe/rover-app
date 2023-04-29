@@ -1,0 +1,31 @@
+.no-photos {
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.prev-btn,
+.next-btn,
+.back-btn {
+  height: 56px;
+}
+
+.top-bar {
+  margin-bottom: 15px;
+  & .back-btn {
+    margin-right: 15px;
+  }
+}
+
+.pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+
+  & .prev-btn {
+    margin-right: 15px;
+  }
+}
