@@ -15,3 +15,10 @@ To reduce load times, images are loaded in different pages, 25 images at a time.
 
 ---
 This project uses Next.js, eslint, scss, Material UI (and MUI X).
+
+---
+Tested on Intel Mac (Big Sur) w/ Node 19.4.0 and npm 9.6.5
+Tested on Apple Silicon Mac (Ventura) w/ Node 16 & 18 and associated npm versions
+Tested on Fedora 36 (Intel) w/ Node 16 & 18 and associated npm versions
+Tested on Ubuntu 22.04 w/ Node w/ Node 18.16.0 and npm 9.5.1
+Tested on Windows 11 w/ Node 18.16.0 and npm 9.6.5
