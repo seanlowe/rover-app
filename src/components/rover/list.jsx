@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Link from 'next/link'
 import axios from 'axios'
 import { Grid, Card, CardContent, Typography } from '@mui/material'
 import { ROVERS_LIST_API as roverApi } from './helpers'
+import RoverContext from '@/utilities/contexts/roverContext'
 
 const RoversList = () => {
+  const { state, dispatch } = useContext( RoverContext )
   const [ rovers, setRovers ] = useState( [] )
   const [ isLoading, setIsLoading ] = useState( false )
   const [ error, setError ] = useState( null )
@@ -58,17 +60,22 @@ const RoversList = () => {
       <Grid container spacing={3}>
         {rovers.map(( rover ) => {
           const roverNamePath = `/detail/${rover.name.toLowerCase()}`
+          const payload = {
+            name: rover.name,
+            max_date: rover.max_date,
+            total_photos: rover.total_photos,
+          }
 
           return (
             <Grid item xs={12} sm={6} md={4} key={rover.id}>
               <Card className='card'>
                 <CardContent>
                   <Link
-                    href={{
-                      pathname: roverNamePath,
-                      query: { rover: JSON.stringify( rover ) }
-                    }}
+                    href={roverNamePath}
                     as={roverNamePath}
+                    onClick={() => {
+                      dispatch({ type: 'setRover', payload })
+                    }}
                   >
                     <Typography className='rover-title' variant='h5' component='h2'>
                       {rover.name}
