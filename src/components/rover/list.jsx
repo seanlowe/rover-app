@@ -3,10 +3,11 @@ import Link from 'next/link'
 import axios from 'axios'
 import { Grid, Card, CardContent, Typography } from '@mui/material'
 import { ROVERS_LIST_API as roverApi } from './helpers'
+import Loading from '../layouts/loading'
 
 const RoversList = () => {
   const [ rovers, setRovers ] = useState( [] )
-  const [ isLoading, setIsLoading ] = useState( false )
+  const [ isLoading, setIsLoading ] = useState( true )
   const [ error, setError ] = useState( null )
   
   useEffect(() => {
@@ -53,7 +54,7 @@ const RoversList = () => {
       <Typography variant='subtitle1' component='h4' gutterBottom>
         Click on a Rover&apos;s name to see pictures from it.
       </Typography>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <Loading />}
       {error && <p>Error: {error.message}</p>}
       <Grid container spacing={3}>
         {rovers.map(( rover ) => {

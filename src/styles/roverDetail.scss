@@ -19,6 +19,16 @@
   }
 }
 
+.detail-view {
+  & .loading-tagline {
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+  }
+}
+
 .pagination-bar {
   display: flex;
   align-items: center;
