@@ -6,6 +6,7 @@ import { format } from 'date-fns'
 import { Button, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { buildRoverDetailApi } from './helpers'
+import Loading from '../layouts/loading'
 
 const RoverDetail = () => {
   const router = useRouter()
@@ -13,7 +14,7 @@ const RoverDetail = () => {
   const [ photos, setPhotos ] = useState( [] )
   const [ page, setPage ] = useState( 1 )
   const [ totalPages, setTotalPages ] = useState( Math.floor( rover.total_photos / 25 ))
-  const [ isLoading, setIsLoading ] = useState( false )
+  const [ isLoading, setIsLoading ] = useState( true )
   const [ error, setError ] = useState( null )
   const [ selectedDate, setSelectedDate ] = useState( new Date())
   const [ currentApiUrl, setCurrentApiUrl ] = useState(
@@ -77,7 +78,7 @@ const RoverDetail = () => {
 
   const renderPhotos = () => {
     const formattedDate = format( selectedDate, 'yyyy-MM-dd' )
-    if ( formattedDate > rover.max_date ) {
+    if ( formattedDate > rover.max_date && !isLoading ) {
       return (
         <>
           <center className='no-photos'>
@@ -128,7 +129,7 @@ const RoverDetail = () => {
   }
   
   return (
-    <div>
+    <div className='detail-view'>
       <Typography variant='h4' component='h1' gutterBottom>
         {rover.name} Photos
       </Typography>
@@ -150,7 +151,7 @@ const RoverDetail = () => {
           onChange={handleDateChange}
         />
       </div>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <Loading />}
       {error && <p>Error: {error.message}</p>}
       {renderPhotos()}
       <div className='pagination-bar'>
